@@ -65,6 +65,7 @@ async function getAppQueues(
       const jobsPerPage = +query.jobsPerPage || 10;
 
       const jobStatuses = queue.getJobStatuses();
+      const jobSchedulers = await queue.getJobSchedulers();
 
       const status =
         !isActiveQueue || query.status === 'latest' ? jobStatuses : [query.status as JobStatus];
@@ -84,6 +85,7 @@ async function getAppQueues(
         statuses: queue.getStatuses(),
         counts: counts as Record<Status, number>,
         jobs: jobs.filter(Boolean).map((job) => formatJob(job, queue)),
+        jobSchedulers,
         pagination,
         readOnlyMode: queue.readOnlyMode,
         allowRetries: queue.allowRetries,

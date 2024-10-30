@@ -65,6 +65,7 @@
       "PAUSE": "Pause",
       "EMPTY": "Empty",
       "ADD_JOB": "Add job",
+      "ADD_JOB_SCHEDULER": "Add job scheduler",
       "CONFIRM": {
         "RETRY_ALL": "Are you sure that you want to retry all {{status}} jobs?",
         "CLEAN_ALL": "Are you sure that you want to clean all {{status}} jobs?",
@@ -138,6 +139,16 @@
     "JOB_OPTIONS": "Job options",
     "ADD": "Add",
     "DUPLICATE": "Duplicate"
+  },
+  "ADD_JOB_SCHEDULER": {
+    "TITLE": "Add job scheduler",
+    "QUEUE_NAME": "Queue name",
+    "JOB_SCHEDULER_NAME": "Job scheduler name",
+    "JOB_NAME": "Job name",
+    "JOB_DATA": "Job data",
+    "JOB_OPTIONS": "Job options",
+    "REPEAT_OPTIONS": "Repeat options",
+    "ADD": "Add"
   },
   "UPDATE_JOB_DATA": {
     "TITLE": "Update job data",

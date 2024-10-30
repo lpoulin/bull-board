@@ -5,6 +5,7 @@ import {
   JobCounts,
   JobStatus,
   QueueAdapterOptions,
+  QueueJob,
   QueueJobOptions,
   Status,
 } from '../../typings/app';
@@ -42,6 +43,15 @@ export class BullAdapter extends BaseAdapter {
 
   public getJobs(jobStatuses: JobStatus<'bull'>[], start?: number, end?: number): Promise<Job[]> {
     return this.queue.getJobs(jobStatuses, start, end).then((jobs) => jobs.map(this.alignJobData));
+  }
+
+  // jobSchedulers are not supported in bull, only in bullmq
+  public getJobSchedulers(): Promise<never[]> {
+    return Promise.resolve([]);
+  }
+
+  public upsertJobScheduler(): Promise<QueueJob> {
+    throw new Error('Method not implemented.');
   }
 
   public getJobCounts(): Promise<JobCounts> {
