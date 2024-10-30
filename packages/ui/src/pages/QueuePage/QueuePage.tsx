@@ -21,6 +21,14 @@ const AddJobModalLazy = React.lazy(() =>
   }))
 );
 
+const AddJobSchedulerModalLazy = React.lazy(() =>
+  import('../../components/AddJobSchedulerModal/AddJobSchedulerModal').then(
+    ({ AddJobSchedulerModal }) => ({
+      default: AddJobSchedulerModal,
+    })
+  )
+);
+
 const UpdateJobDataModalLazy = React.lazy(() =>
   import('../../components/UpdateJobDataModal/UpdateJobDataModal').then(
     ({ UpdateJobDataModal }) => ({
@@ -35,7 +43,7 @@ export const QueuePage = () => {
   const { actions } = useQueues();
   const { actions: jobActions } = useJob();
   const queue = useActiveQueue();
-  const modal = useModal<'addJob' | 'updateJobData'>();
+  const modal = useModal<'addJob' | 'addJobScheduler' | 'updateJobData'>();
   const [editJob, setEditJob] = React.useState<AppJob | null>(null);
 
   actions.pollQueues();
@@ -73,7 +81,11 @@ export const QueuePage = () => {
           {!queue.readOnlyMode && (
             <QueueDropdownActions
               queue={queue}
-              actions={{ ...actions, addJob: () => modal.open('addJob') }}
+              actions={{
+                ...actions,
+                addJob: () => modal.open('addJob'),
+                addJobScheduler: () => modal.open('addJobScheduler'),
+              }}
             />
           )}
         </StatusMenu>
@@ -118,6 +130,12 @@ export const QueuePage = () => {
               modal.close('updateJobData');
             }}
             job={editJob}
+          />
+        )}
+        {modal.isMounted('addJobScheduler') && (
+          <AddJobSchedulerModalLazy
+            open={modal.isOpen('addJobScheduler')}
+            onClose={modal.close('addJobScheduler')}
           />
         )}
       </Suspense>

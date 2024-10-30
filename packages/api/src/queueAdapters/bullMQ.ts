@@ -3,8 +3,11 @@ import {
   JobCleanStatus,
   JobCounts,
   JobStatus,
+  JobTemplate,
   QueueAdapterOptions,
   QueueJobOptions,
+  RepeatableJob,
+  RepeatOptions,
   Status,
 } from '../../typings/app';
 import { STATUSES } from '../constants/statuses';
@@ -32,12 +35,24 @@ export class BullMQAdapter extends BaseAdapter {
     return this.queue.add(name, data, options);
   }
 
+  public upsertJobScheduler(
+    name: string,
+    repeatOptions: RepeatOptions,
+    jobTemplate: JobTemplate
+  ): Promise<Job> {
+    return this.queue.upsertJobScheduler(name, repeatOptions, jobTemplate);
+  }
+
   public getJob(id: string): Promise<Job | undefined> {
     return this.queue.getJob(id);
   }
 
   public getJobs(jobStatuses: JobStatus[], start?: number, end?: number): Promise<Job[]> {
     return this.queue.getJobs(jobStatuses, start, end);
+  }
+
+  public getJobSchedulers(): Promise<RepeatableJob[]> {
+    return this.queue.getJobSchedulers();
   }
 
   public getJobCounts(): Promise<JobCounts> {

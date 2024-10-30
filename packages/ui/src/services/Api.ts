@@ -103,6 +103,20 @@ export class Api {
     });
   }
 
+  public addJobScheduler(
+    queueName: string,
+    jobSchedulerName: string,
+    repeatOptions: Record<any, any>,
+    jobTemplate: Record<any, any>
+  ): Promise<GetJobResponse> {
+    console.log('addJobScheduler', queueName, jobSchedulerName, repeatOptions, jobTemplate);
+    return this.axios.post(`/queues/${encodeURIComponent(queueName)}/addJobScheduler`, {
+      jobSchedulerName: jobSchedulerName,
+      repeatOptions: repeatOptions,
+      jobTemplate: jobTemplate,
+    });
+  }
+
   public pauseQueue(queueName: string) {
     return this.axios.put(`/queues/${encodeURIComponent(queueName)}/pause`);
   }

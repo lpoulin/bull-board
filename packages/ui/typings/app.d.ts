@@ -25,6 +25,12 @@ export interface QueueActions {
     jobData: any,
     jobOptions: any
   ) => () => Promise<void>;
+  addJobScheduler: (
+    queueName: string,
+    jobSchedulerName: string,
+    repeatOptions: any,
+    jobTemplate: any
+  ) => () => Promise<void>;
 }
 
 export interface JobActions {

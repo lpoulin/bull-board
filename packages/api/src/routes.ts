@@ -1,5 +1,6 @@
 import { AppRouteDefs } from '../typings/app';
 import { addJobHandler } from './handlers/addJob';
+import { addJobSchedulerHandler } from './handlers/addJobScheduler';
 import { cleanAllHandler } from './handlers/cleanAll';
 import { cleanJobHandler } from './handlers/cleanJob';
 import { emptyQueueHandler } from './handlers/emptyQueue';
@@ -39,6 +40,11 @@ export const appRoutes: AppRouteDefs = {
       method: 'post',
       route: '/api/queues/:queueName/add',
       handler: addJobHandler,
+    },
+    {
+      method: 'post',
+      route: '/api/queues/:queueName/addJobScheduler',
+      handler: addJobSchedulerHandler,
     },
     {
       method: 'put',

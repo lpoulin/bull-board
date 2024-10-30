@@ -114,6 +114,43 @@ export interface AppJob {
   isFailed: boolean;
 }
 
+export interface AppJobScheduler {
+  jobSchedulerId: string;
+  repeatOpts: RepeatOptions;
+  jobTemplate: JobTemplate;
+}
+
+export interface RepeatableJob {
+  endDate: number | null;
+  every?: string | null;
+  id?: string | null;
+  key: string;
+  name: string;
+  next: number;
+  pattern: string | null;
+  tz: string | null;
+}
+
+export interface RepeatOptions {
+  pattern?: string;
+  key?: string;
+  limit?: number;
+  every?: number;
+  immediately?: boolean;
+  count?: number;
+  prevMillis?: number;
+  offset?: number;
+  jobId?: string;
+}
+
+export interface JobTemplate {
+  name: string;
+  data: object;
+  options: RepeatableJobOptions;
+}
+
+export interface RepeatableJobOptions {}
+
 export type QueueType = 'bull' | 'bullmq';
 
 export interface AppQueue {
@@ -121,6 +158,7 @@ export interface AppQueue {
   description?: string;
   counts: Record<Status, number>;
   jobs: AppJob[];
+  jobSchedulers: RepeatableJob[];
   statuses: Status[];
   pagination: Pagination;
   readOnlyMode: boolean;
