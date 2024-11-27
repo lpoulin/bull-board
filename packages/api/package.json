@@ -1,6 +1,6 @@
 {
   "name": "@bull-board/api",
-  "version": "6.3.2",
+  "version": "6.5.3",
   "description": "A Dashboard server API built on top of bull or bullmq.",
   "keywords": [
     "bull",
@@ -34,12 +34,12 @@
     "@types/redis-info": "^3.0.0",
     "@types/supertest": "^2.0.12",
     "bull": "^4.10.4",
-    "bullmq": "^4.6.0",
+    "bullmq": "^5.18.0",
     "ioredis": "^5.3.2",
     "supertest": "^6.3.3"
   },
   "peerDependencies": {
-    "@bull-board/ui": "6.3.2"
+    "@bull-board/ui": "6.5.3"
   },
   "publishConfig": {
     "access": "public"
